@@ -768,6 +768,13 @@ section {
   section {
     padding: 72px 0;
   }
+  /* FAQ section is only shown on larger screens; keeps mobile shorter/simpler */
+  .faq {
+    display: none;
+  }
+  .nav-faq {
+    display: none;
+  }
   .site-nav {
     position: fixed;
     inset: var(--header-height) 0 0 0;
