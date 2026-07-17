@@ -5,25 +5,32 @@
 
 /* Self-hosted fonts (no external requests to third-party font providers) */
 @font-face {
-  font-family: "Fraunces";
+  font-family: "Lora";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/fraunces-400.woff2") format("woff2");
+  src: url("../fonts/lora-400.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Fraunces";
+  font-family: "Lora";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/fraunces-500.woff2") format("woff2");
+  src: url("../fonts/lora-500.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Fraunces";
+  font-family: "Lora";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/fraunces-600.woff2") format("woff2");
+  src: url("../fonts/lora-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/lora-700.woff2") format("woff2");
 }
 @font-face {
   font-family: "Inter";
@@ -69,7 +76,7 @@
   --color-text-muted: #6f6157;
   --color-border: #e8dccd;
 
-  --font-heading: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-heading: "Lora", Georgia, "Times New Roman", serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
 
   --container-width: 1140px;

@@ -30,13 +30,10 @@ w, h = portrait.size
 portrait_cropped = portrait.crop((0, int(h * 0.02), w, h))
 save(portrait_cropped, "edda-portrait", widths=[640, 900, 1200, 1600])
 
-# 2) Edda holding newborn in green sweater -> replicate site's own crop rectangle
+# 2) Edda holding newborn in green sweater -> use the full original photo,
+#    uncropped, so it keeps its true (portrait, ~9:16) aspect ratio.
 baby2 = Image.open(os.path.join(SRC, "edda-baby-2-raw.jpg"))
-w, h = baby2.size  # 2268 x 4032
-top = 244.12 / 4032 * h
-bottom = 3079.12 / 4032 * h
-baby2_cropped = baby2.crop((0, int(top), w, int(bottom)))
-save(baby2_cropped, "edda-baby-newborn", widths=[480, 800, 1100, 1500])
+save(baby2, "edda-baby-newborn", widths=[480, 800, 1100, 1500])
 
 # 3) Small accent photo (striped shirt, sleeping baby) -> already small, just re-encode
 baby1 = Image.open(os.path.join(SRC, "edda-baby-1-raw.jpg"))

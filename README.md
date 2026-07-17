@@ -21,7 +21,7 @@ site.webmanifest       Web App Manifest (Icons, Theme-Farbe)
 assets/
   css/style.css         Gesamtes Styling
   js/main.js            Mobiles Menü, Scroll-Animationen, Footer-Jahr
-  fonts/                Selbst gehostete Schriftdateien (Fraunces, Inter)
+  fonts/                Selbst gehostete Schriftdateien (Lora, Inter)
   img/                  Optimierte Bilder (JPEG + WebP, mehrere Größen) und Icons
 site-assets/
   originals/            Rohbilder in Originalqualität (Ausgangsmaterial)
@@ -35,9 +35,10 @@ site-assets/
   Kontakt). Impressum/Datenschutz sind aus rechtlichen Gründen eigene,
   schlanke Unterseiten.
 - **Farben & Typografie**: warme, ruhige Terrakotta-/Cremetöne mit einem
-  Salbeigrün als Sekundärfarbe. Überschriften in „Fraunces“ (Serife, warm),
-  Fließtext in „Inter“. Beide Schriften werden selbst gehostet (kein externer
-  Aufruf zu Google Fonts).
+  Salbeigrün als Sekundärfarbe. Überschriften in „Lora“ (klare, gut lesbare
+  Serifenschrift mit geradem, ruhigem Schriftbild), Fließtext in „Inter“.
+  Beide Schriften werden selbst gehostet (kein externer Aufruf zu Google
+  Fonts).
 - **Keine Cookies, kein Tracking**: bewusst wie auf der bisherigen Website.
   Es gibt keine Analyse-Skripte, keine eingebetteten Drittanbieter-Inhalte
   (auch keine Google-Maps-Einbettung) und keine Cookie-Banner, weil schlicht
