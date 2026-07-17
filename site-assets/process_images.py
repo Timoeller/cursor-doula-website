@@ -37,8 +37,13 @@ save(portrait_cropped, "edda-portrait", widths=[640, 900, 1200, 1600])
 baby2 = Image.open(os.path.join(SRC, "edda-baby-2-raw.jpg"))
 save(baby2, "edda-baby-newborn", widths=[480, 800])
 
-# 3) Small accent photo (striped shirt, sleeping baby) -> already small, just re-encode
+# 3) Small circular accent photo (striped shirt, sleeping baby) -> crop to a
+#    square, top-anchored on the original width so the full head stays in
+#    frame (the raw photo is a tall portrait). Displayed a bit larger than
+#    before as a circle, so two square source sizes are generated.
 baby1 = Image.open(os.path.join(SRC, "edda-baby-1-raw.jpg"))
-save(baby1, "edda-baby-sleeping", widths=[360, 480])
+w, h = baby1.size
+baby1_square = baby1.crop((0, 0, w, w))
+save(baby1_square, "edda-baby-sleeping", widths=[280, 400])
 
 print("done")
