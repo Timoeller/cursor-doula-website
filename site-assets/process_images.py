@@ -31,9 +31,11 @@ portrait_cropped = portrait.crop((0, int(h * 0.02), w, h))
 save(portrait_cropped, "edda-portrait", widths=[640, 900, 1200, 1600])
 
 # 2) Edda holding newborn in green sweater -> use the full original photo,
-#    uncropped, so it keeps its true (portrait, ~9:16) aspect ratio.
+#    uncropped, so it keeps its true (portrait, ~9:16) aspect ratio. Displayed
+#    fairly small on the page (max ~300px wide), so only two source sizes
+#    are needed.
 baby2 = Image.open(os.path.join(SRC, "edda-baby-2-raw.jpg"))
-save(baby2, "edda-baby-newborn", widths=[480, 800, 1100, 1500])
+save(baby2, "edda-baby-newborn", widths=[480, 800])
 
 # 3) Small accent photo (striped shirt, sleeping baby) -> already small, just re-encode
 baby1 = Image.open(os.path.join(SRC, "edda-baby-1-raw.jpg"))

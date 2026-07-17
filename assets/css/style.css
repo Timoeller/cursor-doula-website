@@ -388,9 +388,13 @@ section {
 /* ---------- About ---------- */
 .about-inner {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 64px;
+  grid-template-columns: minmax(0, 300px) 1fr;
+  gap: 56px;
   align-items: center;
+}
+
+.about-media {
+  max-width: 300px;
 }
 
 .about-media picture {
@@ -398,6 +402,11 @@ section {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+}
+
+.about-media img {
+  width: 100%;
+  height: auto;
 }
 
 .about-copy h2 {
@@ -732,10 +741,14 @@ section {
   .area-inner {
     grid-template-columns: 1fr;
   }
-  .hero-media,
-  .about-media {
+  .hero-media {
     order: -1;
     max-width: 360px;
+    margin: 0 auto;
+  }
+  .about-media {
+    order: -1;
+    max-width: 280px;
     margin: 0 auto;
   }
   .steps {
