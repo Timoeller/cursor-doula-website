@@ -616,7 +616,8 @@ section {
 
 .contact-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+  justify-content: center;
   gap: 20px;
 }
 
@@ -646,6 +647,10 @@ section {
   font-family: var(--font-heading);
   font-size: 1.15rem;
   word-break: break-word;
+}
+.contact-sub {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
 }
 
 /* ---------- Footer ---------- */
@@ -754,9 +759,6 @@ section {
   .steps {
     grid-template-columns: repeat(2, 1fr);
   }
-  .contact-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .quote-card {
     justify-self: center;
     max-width: 420px;
@@ -830,9 +832,6 @@ section {
     justify-content: center;
   }
   .steps {
-    grid-template-columns: 1fr;
-  }
-  .contact-cards {
     grid-template-columns: 1fr;
   }
   .footer-inner {
