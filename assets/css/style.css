@@ -779,7 +779,10 @@ section {
   }
   .site-nav {
     position: fixed;
-    inset: var(--header-height) 0 0 0;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    height: calc(100vh - var(--header-height));
     background: var(--color-bg);
     transform: translateY(-8px);
     opacity: 0;
