@@ -7,6 +7,23 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  var prefersReducedMotionQuery = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  // "Scroll to top" links (e.g. the logo). A plain `#top` anchor doesn't
+  // reliably scroll because the target is the sticky header itself, which
+  // browsers may treat as already in view. Scroll the window explicitly.
+  document.querySelectorAll('a[href="#top"]').forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotionQuery.matches ? "auto" : "smooth",
+      });
+    });
+  });
+
   // Mobile navigation toggle
   var navToggle = document.getElementById("nav-toggle");
   var siteNav = document.getElementById("site-nav");
@@ -37,9 +54,7 @@
 
   // Scroll reveal animations
   var revealEls = document.querySelectorAll(".reveal");
-  var prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  var prefersReducedMotion = prefersReducedMotionQuery.matches;
 
   if (revealEls.length && !prefersReducedMotion && "IntersectionObserver" in window) {
     var observer = new IntersectionObserver(
