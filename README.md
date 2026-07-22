@@ -26,6 +26,10 @@ assets/
 site-assets/
   originals/            Rohbilder in Originalqualität (Ausgangsmaterial)
   process_images.py     Skript zum Zuschneiden/Optimieren der Fotos
+flyer/
+  flyer.pdf / flyer-a4.png   Druckfertiger A4-Flyer (300 dpi) mit QR-Code
+  flyer.html                 Browser-Ansicht zum Drucken
+  generate_flyer.py          Erzeugt PNG/PDF neu aus Texten und Assets
 ```
 
 ## Design-Entscheidungen
@@ -103,4 +107,15 @@ erzeugt:
 ```bash
 pip install pillow
 python3 site-assets/process_images.py
+```
+
+## A4-Flyer
+
+Unter `flyer/` liegt ein druckfertiger A4-Flyer (PDF + 300-dpi-PNG) mit
+Portrait, Kontaktdaten und QR-Code zur Website
+`https://www.edda-die-doula.de/`. Neu erzeugen:
+
+```bash
+pip install pillow pymupdf qrcode
+python3 flyer/generate_flyer.py
 ```
