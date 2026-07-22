@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flyer – Edda · Doula | A4 Druckvorlage</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #d8cfc4;
+    color: #35291f;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .screen-hint {
+    max-width: 210mm;
+    margin: 16px auto 8px;
+    padding: 0 12px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    color: #5a4f45;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .screen-hint a { color: #8f4529; }
+
+  .page {
+    width: 210mm;
+    margin: 12px auto 32px;
+    background: #fbf6f0;
+    box-shadow: 0 18px 40px -20px rgba(53, 41, 31, 0.45);
+  }
+
+  .page img {
+    display: block;
+    width: 210mm;
+    height: 297mm;
+    object-fit: fill;
+  }
+
+  @media print {
+    body { background: none; }
+    .screen-hint { display: none !important; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      width: 210mm;
+      height: 297mm;
+    }
+    .page img {
+      width: 210mm;
+      height: 297mm;
+    }
+  }
+</style>
+</head>
+<body>
+  <p class="screen-hint">
+    A4-Druckflyer für Edda · Doula ·
+    Zum Drucken: <kbd>Strg</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd> (Rand auf „Keine“) ·
+    <a href="flyer.pdf">PDF herunterladen</a> ·
+    <a href="flyer-a4.png">PNG (300&nbsp;dpi)</a>
+  </p>
+  <article class="page" aria-label="A4 Flyer Edda Doula">
+    <img src="flyer-a4.png" width="2480" height="3507" alt="A4-Flyer: Edda Doula – Einfühlsame Begleitung für deine Geburt">
+  </article>
+</body>
+</html>
