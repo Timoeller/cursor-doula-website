@@ -207,17 +207,19 @@ def make_flyer() -> Image.Image:
     sd = ImageDraw.Draw(shadow)
     sd.rounded_rectangle(
         [photo_x0 + mm(2), photo_y0 + mm(3), photo_x1 + mm(2), photo_y1 + mm(3)],
-        radius=mm(4),
+        radius=mm(5),
         fill=(53, 41, 31, 45),
     )
     shadow = shadow.filter(ImageFilter.GaussianBlur(mm(4)))
     base.alpha_composite(shadow)
 
+    # Evenly rounded corners on all four sides
+    corner = mm(5)
     paste_rounded(
         base,
         portrait,
         (photo_x0, photo_y0, photo_x1, photo_y1),
-        (mm(2), mm(16), mm(2), mm(16)),
+        (corner, corner, corner, corner),
     )
 
     # Headline + lead beside photo
@@ -262,9 +264,12 @@ def make_flyer() -> Image.Image:
     draw.text((col2_x, y), "EINSATZGEBIET", font=label_font, fill=PRIMARY)
     y += mm(5)
 
-    draw.text((left, y), "Von der Schwangerschaft bis danach", font=h2_font, fill=TEXT)
+    offer_h2 = "Von der Schwangerschaft bis zur Geburt deines Kindes"
+    offer_h2_lines = wrap_text(offer_h2, h2_font, col1_w, draw)
+    for i, line in enumerate(offer_h2_lines):
+        draw.text((left, y + i * mm(5.8)), line, font=h2_font, fill=TEXT)
     draw.text((col2_x, y), "Zuhause im Kreis Heinsberg", font=h2_font, fill=TEXT)
-    y += mm(8)
+    y += max(mm(8), len(offer_h2_lines) * mm(5.8) + mm(2))
 
     offerings = [
         ("01", "Mindestens drei Vorbereitungstreffen in der Schwangerschaft"),
