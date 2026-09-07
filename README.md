@@ -91,9 +91,9 @@ Wurzelverzeichnis des Webspace kopieren.
 **Vor dem Live-Schalten prüfen/anpassen:**
 
 - Domain in `index.html`, `impressum.html`, `datenschutz.html` (`<link
-  rel="canonical">`, Open-Graph-URLs) sowie in `robots.txt` und `sitemap.xml`
-  auf die tatsächliche Ziel-Domain anpassen, falls sie von
-  `https://www.edda-die-doula.de/` abweicht.
+  rel="canonical">`, Open-Graph-URLs) sowie in `CNAME`, `robots.txt`,
+  `sitemap.xml` und `flyer/generate_flyer.py` auf die tatsächliche Ziel-Domain
+  anpassen, falls sie von `https://edda-die-doula.com/` abweicht.
 - Bei Google Search Console und ggf. Google Unternehmensprofil (Google Maps)
   hinterlegen, damit die lokale Auffindbarkeit zusätzlich gestärkt wird.
 
@@ -113,9 +113,13 @@ python3 site-assets/process_images.py
 
 Unter `flyer/` liegt ein druckfertiger A4-Flyer (PDF + 300-dpi-PNG) mit
 Portrait, Kontaktdaten und QR-Code zur Website
-`https://www.edda-die-doula.de/`. Neu erzeugen:
+`https://edda-die-doula.com/`. Neu erzeugen:
 
 ```bash
 pip install pillow pymupdf qrcode
 python3 flyer/generate_flyer.py
 ```
+
+Der QR-Code (`flyer/qr-code.png`) wird dabei aus `SITE_URL` in
+`flyer/generate_flyer.py` mit erzeugt – bei einem Domain- oder Adresswechsel
+reichen also die Konstanten am Anfang des Skripts plus ein Neuaufruf.
