@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import qrcode
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path(__file__).resolve().parent
@@ -12,7 +13,12 @@ REPO = ROOT.parent
 OUT_PNG = ROOT / "flyer-a4.png"
 OUT_PREVIEW = ROOT / "flyer-preview.png"
 OUT_PDF = ROOT / "flyer.pdf"
+OUT_QR = ROOT / "qr-code.png"
 ARTIFACT = Path("/opt/cursor/artifacts/screenshots/edda-doula-flyer-a4.png")
+
+SITE_URL = "https://edda-die-doula.com/"
+SITE_LABEL = "edda-die-doula.com"
+EMAIL = "kontakt@edda-die-doula.com"
 
 # A4 at 300 DPI
 DPI = 300
@@ -142,6 +148,19 @@ def soft_radial(base: Image.Image, center: tuple[int, int], radius: int, color: 
         d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=color + (a,))
     overlay = overlay.filter(ImageFilter.GaussianBlur(radius=mm(8)))
     base.alpha_composite(overlay)
+
+
+def make_qr_code(path: Path) -> None:
+    """QR code to the website in brand colors, sized for the flyer footer."""
+    qr = qrcode.QRCode(
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=12,
+        border=2,
+    )
+    qr.add_data(SITE_URL)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color=TEXT, back_color=BG).convert("RGB")
+    img.save(path, "PNG", optimize=True)
 
 
 def make_flyer() -> Image.Image:
@@ -317,7 +336,7 @@ def make_flyer() -> Image.Image:
     draw.text((left, fy), "Lass uns sprechen", font=contact_h2, fill=TEXT)
 
     # QR on the right
-    qr = Image.open(ROOT / "qr-code.png").convert("RGB")
+    qr = Image.open(OUT_QR).convert("RGB")
     qr_size = mm(34)
     qr_x0 = right - qr_size
     qr_y0 = fy
@@ -335,7 +354,7 @@ def make_flyer() -> Image.Image:
     qr_caption = font("inter-400.ttf", mm(2.6))
     qr_url = font("inter-600.ttf", mm(2.6))
     cap = "Mehr erfahren"
-    url = "www.edda-die-doula.de"
+    url = SITE_LABEL
     cap_w = draw.textlength(cap, font=qr_caption)
     url_w = draw.textlength(url, font=qr_url)
     cy = qr_y0 + qr_size + mm(3)
@@ -348,7 +367,7 @@ def make_flyer() -> Image.Image:
     rows = [
         ("TELEFON", "0157 5835 7374"),
         ("WHATSAPP", "0157 5835 7374"),
-        ("E-MAIL", "kontakt@edda-die-doula.de"),
+        ("E-MAIL", EMAIL),
     ]
     ry = fy + mm(8)
     for label, value in rows:
@@ -391,6 +410,7 @@ def save_pdf_from_png(png_path: Path, pdf_path: Path) -> None:
 
 
 def main() -> None:
+    make_qr_code(OUT_QR)
     flyer = make_flyer()
     flyer.save(OUT_PNG, "PNG", dpi=(DPI, DPI), optimize=True)
     save_pdf_from_png(OUT_PNG, OUT_PDF)
@@ -402,6 +422,7 @@ def main() -> None:
     ARTIFACT.parent.mkdir(parents=True, exist_ok=True)
     preview.save(ARTIFACT, "PNG", optimize=True)
 
+    print(f"QR:     {OUT_QR} -> {SITE_URL}")
     print(f"A4 PNG: {OUT_PNG} ({OUT_PNG.stat().st_size} bytes) {flyer.size}")
     print(f"PDF:    {OUT_PDF} ({OUT_PDF.stat().st_size} bytes)")
     print(f"Preview:{OUT_PREVIEW} {preview.size}")

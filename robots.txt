@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.edda-die-doula.de/sitemap.xml
+Sitemap: https://edda-die-doula.com/sitemap.xml
